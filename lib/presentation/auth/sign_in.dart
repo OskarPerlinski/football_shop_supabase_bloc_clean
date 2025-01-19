@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:football_app/common/widgets/basic_appbar/basic_appbar.dart';
 import 'package:football_app/common/widgets/basic_button/basic_button.dart';
 import 'package:football_app/presentation/auth/forgot_password.dart';
 import 'package:football_app/presentation/auth/sign_up.dart';
@@ -10,22 +11,25 @@ class SignInPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const BasicAppbar(hideBack: true),
       body: Padding(
-        padding: const EdgeInsets.only(top: 100, left: 30, right: 30),
-        child: Column(
-          children: [
-            _signInText(),
-            const SizedBox(height: 50),
-            _emailField(),
-            const SizedBox(height: 20),
-            _passwordField(),
-            const SizedBox(height: 50),
-            _signInButton(),
-            const SizedBox(height: 10),
-            _forgotPassword(context),
-            const SizedBox(height: 100),
-            _signUp(context),
-          ],
+        padding: const EdgeInsets.only(top: 10, left: 30, right: 30),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _signInText(),
+              const SizedBox(height: 50),
+              _emailField(),
+              const SizedBox(height: 20),
+              _passwordField(),
+              const SizedBox(height: 50),
+              _signInButton(),
+              const SizedBox(height: 10),
+              _forgotPassword(context),
+              const SizedBox(height: 100),
+              _signUp(context),
+            ],
+          ),
         ),
       ),
     );
