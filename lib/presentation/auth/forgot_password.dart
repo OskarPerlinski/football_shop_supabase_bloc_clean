@@ -12,14 +12,16 @@ class ForgotPasswordPage extends HookWidget {
       appBar: const BasicAppbar(),
       body: Padding(
         padding: const EdgeInsets.only(top: 10, left: 30, right: 30),
-        child: Column(
-          children: [
-            _resetPasswordText(),
-            const SizedBox(height: 50),
-            _emailField(),
-            const SizedBox(height: 50),
-            _sendEmailButton(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _resetPasswordText(),
+              const SizedBox(height: 50),
+              _emailField(),
+              const SizedBox(height: 50),
+              _sendEmailButton(),
+            ],
+          ),
         ),
       ),
     );
