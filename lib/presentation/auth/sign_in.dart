@@ -107,7 +107,7 @@ class SignInPage extends HookWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text(
-          'Already have an account?',
+          'Dont have an account?',
           style: TextStyle(
             color: Colors.black54,
           ),
