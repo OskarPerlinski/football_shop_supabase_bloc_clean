@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:football_app/common/widgets/basic_button/basic_button.dart';
+import 'package:football_app/presentation/auth/sign_in.dart';
 
 class SignUpPage extends HookWidget {
   const SignUpPage({super.key});
@@ -24,7 +25,7 @@ class SignUpPage extends HookWidget {
             const SizedBox(height: 50),
             _signUpButton(),
             const SizedBox(height: 100),
-            _signIn(),
+            _signIn(context),
           ],
         ),
       ),
@@ -37,7 +38,7 @@ class SignUpPage extends HookWidget {
       style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
     );
   }
-  
+
   Widget _firstNameField() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,21 +142,31 @@ class SignUpPage extends HookWidget {
     );
   }
 
-  Widget _signIn() {
-    return const Row(
+  Widget _signIn(BuildContext context) {
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
+        const Text(
           'Already have an account?',
           style: TextStyle(
             color: Colors.black54,
           ),
         ),
-        SizedBox(width: 5),
-        Text(
-          'Sign In',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
+        const SizedBox(width: 5),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SignInPage(),
+              ),
+            );
+          },
+          child: const Text(
+            'Sign In',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ],
