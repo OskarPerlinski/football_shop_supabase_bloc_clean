@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:football_app/common/widgets/basic_button/basic_button.dart';
+import 'package:football_app/presentation/auth/forgot_password.dart';
 import 'package:football_app/presentation/auth/sign_up.dart';
 
 class SignInPage extends HookWidget {
@@ -21,7 +22,7 @@ class SignInPage extends HookWidget {
             const SizedBox(height: 50),
             _signInButton(),
             const SizedBox(height: 10),
-            _forgotPassword(),
+            _forgotPassword(context),
             const SizedBox(height: 100),
             _signUp(context),
           ],
@@ -92,12 +93,22 @@ class SignInPage extends HookWidget {
     );
   }
 
-  Widget _forgotPassword() {
-    return const Text(
-      'Forgot Password?',
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        color: Colors.blue,
+  Widget _forgotPassword(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ForgotPasswordPage(),
+          ),
+        );
+      },
+      child: const Text(
+        'Forgot Password?',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.blue,
+        ),
       ),
     );
   }
