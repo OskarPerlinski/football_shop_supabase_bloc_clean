@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:football_app/common/widgets/basic_button/basic_button.dart';
+import 'package:football_app/presentation/auth/sign_up.dart';
 
 class SignInPage extends HookWidget {
   const SignInPage({super.key});
@@ -22,7 +23,7 @@ class SignInPage extends HookWidget {
             const SizedBox(height: 10),
             _forgotPassword(),
             const SizedBox(height: 100),
-            _signUp(),
+            _signUp(context),
           ],
         ),
       ),
@@ -101,21 +102,31 @@ class SignInPage extends HookWidget {
     );
   }
 
-  Widget _signUp() {
-    return const Row(
+  Widget _signUp(BuildContext context) {
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
+        const Text(
           'Already have an account?',
           style: TextStyle(
             color: Colors.black54,
           ),
         ),
-        SizedBox(width: 5),
-        Text(
-          'Sign Up',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
+        const SizedBox(width: 5),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SignUpPage(),
+              ),
+            );
+          },
+          child: const Text(
+            'Sign Up',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ],
