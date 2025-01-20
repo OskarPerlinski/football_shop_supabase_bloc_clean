@@ -164,7 +164,7 @@ class SignInPage extends HookWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const ForgotPasswordPage(),
+            builder: (context) => ForgotPasswordPage(),
           ),
         );
       },
