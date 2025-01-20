@@ -48,7 +48,7 @@ class SignUpPage extends HookWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const SignInPage(),
+                          builder: (context) => SignInPage(),
                         ),
                       );
                     },
@@ -251,7 +251,7 @@ class SignUpPage extends HookWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const SignInPage(),
+                builder: (context) => SignInPage(),
               ),
             );
           },
