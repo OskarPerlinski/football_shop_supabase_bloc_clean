@@ -1,6 +1,7 @@
 import 'package:football_app/data/auth/repository/auth.dart';
 import 'package:football_app/data/auth/source/auth_supabase_service.dart';
 import 'package:football_app/domain/repository/auth.dart';
+import 'package:football_app/domain/usecases/reset_password.dart';
 import 'package:football_app/domain/usecases/sign_in.dart';
 import 'package:football_app/domain/usecases/sign_up.dart';
 import 'package:get_it/get_it.dart';
@@ -16,4 +17,5 @@ Future<void> initialzeDependencies() async {
   //usecases
   sl.registerSingleton<SignUpUseCase>(SignUpUseCase());
   sl.registerSingleton<SignInUseCase>(SignInUseCase());
+  sl.registerSingleton<ResetPasswordUseCase>(ResetPasswordUseCase());
 }
