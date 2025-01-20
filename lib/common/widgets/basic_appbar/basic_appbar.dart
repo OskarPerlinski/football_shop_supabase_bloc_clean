@@ -23,7 +23,7 @@ class BasicAppbar extends HookWidget implements PreferredSizeWidget {
       elevation: 0,
       centerTitle: true,
       automaticallyImplyLeading: false,
-      toolbarHeight: height ?? 80 ,
+      toolbarHeight: height ?? 60 ,
       title: title ?? const Text(''),
       titleSpacing: 0,
       actions: [
@@ -51,5 +51,5 @@ class BasicAppbar extends HookWidget implements PreferredSizeWidget {
   }
   
   @override
-  Size get preferredSize => Size.fromHeight(height ?? 80);
+  Size get preferredSize => Size.fromHeight(height ?? 60);
 }
