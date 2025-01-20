@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:football_app/data/auth/models/user_creation_req.dart';
+import 'package:football_app/data/auth/models/user_signin_req.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class AuthSupabaseService {
   Future<Either> getSignUp(UserCreationReqModels user);
+  Future<Either> getSignIn(UserSigninReqModels user);
 }
 
 class AuthSupabaseServiceImpl extends AuthSupabaseService {
@@ -23,7 +25,20 @@ class AuthSupabaseServiceImpl extends AuthSupabaseService {
       );
       return Right(returnedData.user!.id);
     } catch (e) {
-      return  Left(e.toString());
+      return Left(e.toString());
+    }
+  }
+
+  @override
+  Future<Either> getSignIn(UserSigninReqModels user) async {
+    try {
+      final returnedData = await supabaseClient.auth.signInWithPassword(
+        password: user.password!,
+        email: user.email!,
+      );
+      return Right(returnedData.user!.id);
+    } catch (e) {
+      return Left(e.toString());
     }
   }
 }
