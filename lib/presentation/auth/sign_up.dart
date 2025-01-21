@@ -8,7 +8,7 @@ import 'package:football_app/bloc/button/button_state.dart';
 import 'package:football_app/common/widgets/basic_appbar/basic_appbar.dart';
 import 'package:football_app/common/widgets/basic_reactive_button/basic_reactive_button.dart';
 import 'package:football_app/data/auth/models/user_creation_req.dart';
-import 'package:football_app/domain/usecases/sign_up.dart';
+import 'package:football_app/domain/auth/usecases/sign_up.dart';
 import 'package:football_app/presentation/auth/sign_in.dart';
 
 class SignUpPage extends HookWidget {
