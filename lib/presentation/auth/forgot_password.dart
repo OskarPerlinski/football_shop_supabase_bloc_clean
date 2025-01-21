@@ -5,7 +5,7 @@ import 'package:football_app/bloc/button/button_cubit.dart';
 import 'package:football_app/bloc/button/button_state.dart';
 import 'package:football_app/common/widgets/basic_appbar/basic_appbar.dart';
 import 'package:football_app/common/widgets/basic_reactive_button/basic_reactive_button.dart';
-import 'package:football_app/domain/usecases/reset_password.dart';
+import 'package:football_app/domain/auth/usecases/reset_password.dart';
 import 'package:football_app/presentation/auth/we_send_email.dart';
 
 class ForgotPasswordPage extends HookWidget {

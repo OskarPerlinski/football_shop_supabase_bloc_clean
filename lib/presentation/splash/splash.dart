@@ -5,6 +5,7 @@ import 'package:football_app/bloc/splash/splash_cubit.dart';
 import 'package:football_app/bloc/splash/splash_state.dart';
 import 'package:football_app/core/assets/app_images.dart';
 import 'package:football_app/presentation/auth/sign_in.dart';
+import 'package:football_app/presentation/home/home.dart';
 
 class SplashPage extends HookWidget {
   const SplashPage({super.key});
@@ -20,6 +21,14 @@ class SplashPage extends HookWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => SignInPage(),
+                ),
+              );
+            }
+            if (state is Authenticated) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomePage(),
                 ),
               );
             }

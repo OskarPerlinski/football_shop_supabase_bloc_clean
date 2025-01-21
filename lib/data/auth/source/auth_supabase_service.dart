@@ -7,6 +7,7 @@ abstract class AuthSupabaseService {
   Future<Either> getSignUp(UserCreationReqModels user);
   Future<Either> getSignIn(UserSigninReqModels user);
   Future<Either> getResetPassword(String email);
+  Future<bool> isLoggedIn();
 }
 
 class AuthSupabaseServiceImpl extends AuthSupabaseService {
@@ -50,6 +51,15 @@ class AuthSupabaseServiceImpl extends AuthSupabaseService {
       return const Right('Password reset Email is sent');
     } catch (e) {
       return const Left('Please try again');
+    }
+  }
+
+  @override
+  Future<bool> isLoggedIn() async {
+    if (Supabase.instance.client.auth.currentUser != null) {
+      return true;
+    } else {
+      return false;
     }
   }
 }
