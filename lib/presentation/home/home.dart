@@ -38,7 +38,6 @@ class HomePage extends HookWidget {
       child: Container(
           height: 200,
           decoration: const BoxDecoration(
-            color: Colors.blue,
             image: DecorationImage(
               fit: BoxFit.cover,
               image: AssetImage(AppImages.rgolBanner),
