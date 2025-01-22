@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:football_app/common/widgets/basic_appbar/basic_appbar.dart';
 import 'package:football_app/core/assets/app_images.dart';
+import 'package:football_app/presentation/home/widget/brands.dart';
 import 'package:football_app/presentation/home/widget/club_collections.dart';
 
 class HomePage extends HookWidget {
@@ -26,6 +27,8 @@ class HomePage extends HookWidget {
             _rgolBanner(),
             const SizedBox(height: 30),
             const ClubCollections(),
+            const SizedBox(height: 50),
+            const Brands(),
           ],
         ),
       ),
@@ -34,7 +37,7 @@ class HomePage extends HookWidget {
 
   Widget _rgolBanner() {
     return  Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20),
+      padding: const EdgeInsets.only(right: 20, left: 20),
       child: Container(
           height: 200,
           decoration: const BoxDecoration(
