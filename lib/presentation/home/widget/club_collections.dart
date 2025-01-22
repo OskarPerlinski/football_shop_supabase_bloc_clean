@@ -10,9 +10,7 @@ class ClubCollections extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: BlocProvider(
+    return  BlocProvider(
         create: (context) => ClubCollectionsCubit()..displayClubCollections(),
         child: BlocBuilder<ClubCollectionsCubit, ClubCollectionsState>(
           builder: (context, state) {
@@ -39,16 +37,18 @@ class ClubCollections extends HookWidget {
             return Container();
           },
         ),
-      ),
-    );
+      );
   }
 
   Widget _clubCollectionsText() {
-    return const Text(
-      'Club Collections',
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 25,
+    return const Padding(
+      padding: EdgeInsets.only(left: 20),
+      child: Text(
+        'Club Collections',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 25,
+        ),
       ),
     );
   }
@@ -60,7 +60,7 @@ class ClubCollections extends HookWidget {
         children: List.generate(
           collections.length,
           (index) => Padding(
-            padding: const EdgeInsets.only(right: 20.0),
+            padding: const EdgeInsets.only(right: 10, left: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
