@@ -4,7 +4,7 @@ import 'package:football_app/domain/club_collections/usecase/club_collections.da
 import 'package:football_app/service_locator.dart';
 
 class ClubCollectionsCubit extends Cubit<ClubCollectionsState> {
-  ClubCollectionsCubit() : super(ClubCollectionsInitial());
+  ClubCollectionsCubit() : super(ClubCollectionsLoading());
 
   void displayClubCollections() async {
     var returnedData = await sl<ClubCollectionsUseCase>().call();
