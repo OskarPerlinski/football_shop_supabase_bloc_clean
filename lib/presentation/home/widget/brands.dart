@@ -33,6 +33,7 @@ class Brands extends HookWidget {
     return SizedBox(
       height: 550,
       child: GridView.builder(
+        physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 1,
