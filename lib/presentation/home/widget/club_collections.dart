@@ -58,7 +58,7 @@ class ClubCollections extends HookWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: List.generate(
-          4,
+          collections.length,
           (index) => Padding(
             padding: const EdgeInsets.only(right: 20.0),
             child: Column(
