@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:football_app/bloc/brands/brands_cubit.dart';
 import 'package:football_app/bloc/brands/brands_state.dart';
 import 'package:football_app/domain/brands/entity/brands.dart';
+import 'package:football_app/presentation/get_by_brand_id.dart/get_by_brand.dart';
 
 class Brands extends HookWidget {
   const Brands({super.key});
@@ -68,30 +69,42 @@ class Brands extends HookWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 200,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                      image: NetworkImage(brands[index].image),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GetByBrandPage(
+                      brandsEntity: brands[index],
                     ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                Center(
-                  child: Text(
-                    brands[index].brand,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                );
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 200,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        image: NetworkImage(brands[index].image),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 10),
+                  Center(
+                    child: Text(
+                      brands[index].brand,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },
