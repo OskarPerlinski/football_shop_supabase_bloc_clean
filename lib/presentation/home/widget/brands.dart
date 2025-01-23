@@ -24,7 +24,7 @@ class Brands extends HookWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _brandsText(),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
                 _brands(state.brands),
               ],
             );
