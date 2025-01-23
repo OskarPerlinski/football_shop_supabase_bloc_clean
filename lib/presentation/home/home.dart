@@ -4,6 +4,7 @@ import 'package:football_app/common/widgets/basic_appbar/basic_appbar.dart';
 import 'package:football_app/core/assets/app_images.dart';
 import 'package:football_app/presentation/home/widget/brands.dart';
 import 'package:football_app/presentation/home/widget/club_collections.dart';
+import 'package:football_app/presentation/home/widget/new_product.dart';
 
 class HomePage extends HookWidget {
   const HomePage({super.key});
@@ -29,6 +30,8 @@ class HomePage extends HookWidget {
             const ClubCollections(),
             const SizedBox(height: 50),
             const Brands(),
+            const SizedBox(height: 50),
+            const NewProduct(),
           ],
         ),
       ),
