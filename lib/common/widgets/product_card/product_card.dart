@@ -24,7 +24,6 @@ class ProductCard extends HookWidget {
               flex: 3,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.yellow,
                   image: DecorationImage(
                     image: NetworkImage(productsEntity.images[0]),
                     fit: BoxFit.cover,
