@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:football_app/common/widgets/basic_appbar/basic_appbar.dart';
+import 'package:football_app/common/widgets/basic_button/basic_button.dart';
 import 'package:football_app/core/assets/app_images.dart';
+import 'package:football_app/domain/products/entity/products.dart';
 
 class DetailPage extends HookWidget {
-  const DetailPage({super.key});
+  final ProductsEntity productsEntity;
+  const DetailPage({super.key, required this.productsEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +31,15 @@ class DetailPage extends HookWidget {
               _nameProduct(),
               const SizedBox(height: 20),
               _priceAndRaiting(),
-              const SizedBox(height: 50),
+              const SizedBox(height: 20),
               _sizes(),
-              const SizedBox(height: 50),
+              const SizedBox(height: 20),
               _quantity(),
-              const SizedBox(height: 50),
+              const SizedBox(height: 20),
               _productDescription(),
+              const SizedBox(height: 30),
+              _addToCartButton(),
+              const SizedBox(height: 30),
             ],
           ),
         ),
@@ -49,24 +55,34 @@ class DetailPage extends HookWidget {
         Container(
           height: 300,
           width: 180,
-          decoration: const BoxDecoration(
-            color: Colors.blue,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage(
+                productsEntity.images[0],
+              ),
+            ),
           ),
         ),
         const SizedBox(width: 10),
         Container(
           height: 300,
           width: 180,
-          decoration: const BoxDecoration(color: Colors.blue),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage(
+                productsEntity.images[1],
+              ),
+            ),
+          ),
         )
       ],
     );
   }
 
   Widget _nameProduct() {
-    return const Text(
-      'FC Barcelona HOME',
-      style: TextStyle(
+    return Text(
+      productsEntity.name,
+      style: const TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 25,
       ),
@@ -74,24 +90,29 @@ class DetailPage extends HookWidget {
   }
 
   Widget _priceAndRaiting() {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          "200 #",
-          style: TextStyle(
+          "${productsEntity.price}\$",
+          style: const TextStyle(
             fontWeight: FontWeight.w500,
             fontSize: 20,
+            color: Colors.blue,
           ),
         ),
         Row(
           children: [
             Text(
-              '4.9',
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+              productsEntity.raiting,
+              style: const TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 20,
+                color: Colors.blue,
+              ),
             ),
-            SizedBox(width: 5),
-            Icon(
+            const SizedBox(width: 5),
+            const Icon(
               Icons.star,
               color: Colors.orange,
             ),
@@ -117,7 +138,7 @@ class DetailPage extends HookWidget {
           height: 40,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            itemCount: 4,
+            itemCount: productsEntity.size.length,
             separatorBuilder: (context, index) => const SizedBox(width: 10),
             itemBuilder: (context, index) {
               return Container(
@@ -126,10 +147,10 @@ class DetailPage extends HookWidget {
                   color: Colors.white,
                   border: Border.all(color: Colors.black),
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
-                    'M',
-                    style: TextStyle(
+                    productsEntity.size[index],
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: Colors.black,
@@ -226,20 +247,28 @@ class DetailPage extends HookWidget {
   }
 
   Widget _productDescription() {
-    return const Column(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Product Description',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Text(
-          'descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription',
+          productsEntity.description,
         ),
       ],
+    );
+  }
+
+  Widget _addToCartButton() {
+    return BasicAppButton(
+      onPressed: () {},
+      title: 'BUY NOW',
     );
   }
 }
