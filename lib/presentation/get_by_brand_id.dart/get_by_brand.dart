@@ -8,7 +8,7 @@ import 'package:football_app/common/widgets/product_card/product_card.dart';
 import 'package:football_app/core/assets/app_images.dart';
 import 'package:football_app/domain/brands/entity/brands.dart';
 import 'package:football_app/domain/products/entity/products.dart';
-import 'package:football_app/presentation/home/widget/get_by_brand_id.dart';
+import 'package:football_app/domain/products/usecases/get_by_brand_id.dart';
 import 'package:football_app/service_locator.dart';
 
 class GetByBrandPage extends HookWidget {
