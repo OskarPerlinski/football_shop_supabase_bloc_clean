@@ -34,4 +34,20 @@ class ProductsRepositoryImpl extends ProductsReposiotry {
       },
     );
   }
+
+  @override
+  Future<Either> getByColletions(String collections) async {
+    var returnedData =
+        await sl<ProductsSupabaseService>().getByColletions(collections);
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        return Right(List.from(data)
+            .map((e) => ProductsModel.fromMap(e).toEntity())
+            .toList());
+      },
+    );
+  }
 }
