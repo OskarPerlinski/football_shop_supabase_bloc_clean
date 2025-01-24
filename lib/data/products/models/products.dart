@@ -9,9 +9,9 @@ class ProductsModel {
   final String createdAt;
   final String name;
   final String price;
-  List<String> images;
+  final List<String> images;
   final String raiting;
-  final String size;
+  final List<String> size;
   final String description;
   final String brand;
   final String collections;
@@ -54,7 +54,9 @@ class ProductsModel {
           ? (map['images'] as String).split(', ')
           : List<String>.from(map['images']),
       raiting: map['raiting'] as String,
-      size: map['size'] as String,
+      size: map['size'] is String
+          ? (map['size'] as String).split(', ')
+          : List<String>.from(map['size']),
       description: map['description'] as String,
       brand: map['brand'] as String,
       collections: map['collections'] as String,
