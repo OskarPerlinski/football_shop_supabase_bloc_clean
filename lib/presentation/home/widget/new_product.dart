@@ -6,6 +6,7 @@ import 'package:football_app/bloc/products/products_state.dart';
 import 'package:football_app/common/widgets/product_card/product_card.dart';
 import 'package:football_app/domain/products/entity/products.dart';
 import 'package:football_app/domain/products/usecases/new_products.dart';
+import 'package:football_app/presentation/detail_page/detail_page.dart';
 import 'package:football_app/service_locator.dart';
 
 class NewProduct extends HookWidget {
@@ -29,7 +30,7 @@ class NewProduct extends HookWidget {
               children: [
                 _newText(),
                 const SizedBox(height: 20),
-                _newProducts(state.products),
+                _newProducts(state.products, context),
               ],
             );
           }
@@ -55,20 +56,30 @@ class NewProduct extends HookWidget {
     );
   }
 
-  Widget _newProducts(List<ProductsEntity> products) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10),
-      child: SizedBox(
-        height: 300,
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return ProductCard(productsEntity: products[index]);
-          },
-          separatorBuilder: (context, index) => const SizedBox(width: 10),
-          itemCount: 4,
-        ),
+ Widget _newProducts(List<ProductsEntity> products, BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.only(left: 10, right: 10),
+    child: SizedBox(
+      height: 300,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailPage(productsEntity: products[index]),
+                ),
+              );
+            },
+            child: ProductCard(productsEntity: products[index]),
+          );
+        },
+        separatorBuilder: (context, index) => const SizedBox(width: 10),
+        itemCount: products.length,
       ),
-    );
-  }
+    ),
+  );
+}
 }
