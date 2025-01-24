@@ -5,6 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 abstract class ProductsSupabaseService {
   Future<Either> getNewProducts();
   Future<Either> getByBrandId(String brand);
+  Future<Either> getByColletions(String collections);
 }
 
 class ProductsSupabaseServiceImpl extends ProductsSupabaseService {
@@ -35,6 +36,21 @@ class ProductsSupabaseServiceImpl extends ProductsSupabaseService {
     } catch (e) {
       return const Left(
         Text('Please try again...'),
+      );
+    }
+  }
+
+  @override
+  Future<Either> getByColletions(String collections) async {
+    try {
+      var returnedData = await supabaseClient
+          .from('products')
+          .select()
+          .eq('collections', collections);
+      return Right(returnedData);
+    } catch (e) {
+      return const Left(
+        Text('Please try again'),
       );
     }
   }
