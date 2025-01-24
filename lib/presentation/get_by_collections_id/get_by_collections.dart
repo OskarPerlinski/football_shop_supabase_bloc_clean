@@ -9,6 +9,7 @@ import 'package:football_app/core/assets/app_images.dart';
 import 'package:football_app/domain/club_collections/entity/club_collections.dart';
 import 'package:football_app/domain/products/entity/products.dart';
 import 'package:football_app/domain/products/usecases/get_by_collections.dart';
+import 'package:football_app/presentation/detail_page/detail_page.dart';
 import 'package:football_app/service_locator.dart';
 
 class GetByCollectionsPage extends HookWidget {
@@ -106,8 +107,20 @@ class GetByCollectionsPage extends HookWidget {
           childAspectRatio: 0.7,
         ),
         itemBuilder: (context, index) {
-          return ProductCard(
-            productsEntity: products[index],
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailPage(
+                    productsEntity: products[index],
+                  ),
+                ),
+              );
+            },
+            child: ProductCard(
+              productsEntity: products[index],
+            ),
           );
         },
       ),
