@@ -3,9 +3,9 @@ class ProductsEntity {
   final String createdAt;
   final String name;
   final String price;
-  List<String> images;
+  final List<String> images;
+  final List<String> size;
   final String raiting;
-  final String size;
   final String description;
   final String brand;
   final String collections;
