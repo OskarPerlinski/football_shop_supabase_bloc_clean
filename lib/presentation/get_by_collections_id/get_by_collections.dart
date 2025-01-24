@@ -5,6 +5,7 @@ import 'package:football_app/bloc/products/products_cubit.dart';
 import 'package:football_app/bloc/products/products_state.dart';
 import 'package:football_app/common/widgets/basic_appbar/basic_appbar.dart';
 import 'package:football_app/common/widgets/product_card/product_card.dart';
+import 'package:football_app/core/assets/app_images.dart';
 import 'package:football_app/domain/club_collections/entity/club_collections.dart';
 import 'package:football_app/domain/products/entity/products.dart';
 import 'package:football_app/domain/products/usecases/get_by_collections.dart';
@@ -17,10 +18,18 @@ class GetByCollectionsPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BasicAppbar(),
+      appBar: const BasicAppbar(
+        title: SizedBox(
+          height: 100,
+          child: Image(
+            image: AssetImage(AppImages.appLogo),
+          ),
+        ),
+      ),
       body: BlocProvider(
-        create: (context) => ProductsCubit(useCase: sl<GetByCollectionsUseCase>())
-          ..displayProducts(params: collectionsEntity.id),
+        create: (context) =>
+            ProductsCubit(useCase: sl<GetByCollectionsUseCase>())
+              ..displayProducts(params: collectionsEntity.id),
         child: BlocBuilder<ProductsCubit, ProductsState>(
           builder: (context, state) {
             if (state is ProductsLoading) {
