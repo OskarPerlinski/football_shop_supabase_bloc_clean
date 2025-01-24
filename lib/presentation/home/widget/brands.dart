@@ -4,7 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:football_app/bloc/brands/brands_cubit.dart';
 import 'package:football_app/bloc/brands/brands_state.dart';
 import 'package:football_app/domain/brands/entity/brands.dart';
-import 'package:football_app/presentation/get_by_brand_id.dart/get_by_brand.dart';
+import 'package:football_app/presentation/get_by_brand_id/get_by_brand.dart';
 
 class Brands extends HookWidget {
   const Brands({super.key});
