@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:football_app/bloc/quantity/quantity_cubit.dart';
 import 'package:football_app/common/widgets/basic_appbar/basic_appbar.dart';
 import 'package:football_app/common/widgets/basic_button/basic_button.dart';
 import 'package:football_app/core/assets/app_images.dart';
@@ -34,7 +36,7 @@ class DetailPage extends HookWidget {
               const SizedBox(height: 20),
               _sizes(),
               const SizedBox(height: 20),
-              _quantity(),
+              _quantity(context),
               const SizedBox(height: 20),
               _productDescription(),
               const SizedBox(height: 30),
@@ -165,7 +167,7 @@ class DetailPage extends HookWidget {
     );
   }
 
-  Widget _quantity() {
+  Widget _quantity(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -181,7 +183,9 @@ class DetailPage extends HookWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                context.read<QuantityCubit>().decrement();
+              },
               icon: Container(
                 height: 40,
                 width: 40,
@@ -206,17 +210,17 @@ class DetailPage extends HookWidget {
               ),
             ),
             const SizedBox(width: 20),
-            const Text(
-              '0',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+            BlocBuilder<QuantityCubit, int>(
+              builder: (context, state) => Text(
+                state.toString(),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
             ),
             const SizedBox(width: 20),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                context.read<QuantityCubit>().increment();
+              },
               icon: Container(
                 height: 40,
                 width: 40,
