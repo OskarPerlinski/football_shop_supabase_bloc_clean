@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:football_app/bloc/product_size/product_size.dart';
 import 'package:football_app/bloc/quantity/quantity_cubit.dart';
 import 'package:football_app/common/widgets/basic_appbar/basic_appbar.dart';
 import 'package:football_app/common/widgets/basic_button/basic_button.dart';
@@ -138,28 +139,38 @@ class DetailPage extends HookWidget {
         const SizedBox(height: 30),
         SizedBox(
           height: 40,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemCount: productsEntity.size.length,
-            separatorBuilder: (context, index) => const SizedBox(width: 10),
-            itemBuilder: (context, index) {
-              return Container(
-                width: 40,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: Colors.black),
-                ),
-                child: Center(
-                  child: Text(
-                    productsEntity.size[index],
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
+          child: BlocBuilder<ProductSizeCubit, int>(
+            builder: (context, selectedIndex) {
+              return ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount: productsEntity.size.length,
+              separatorBuilder: (context, index) => const SizedBox(width: 10),
+              itemBuilder: (context, index) {
+                final isSelected = selectedIndex == index;
+                return GestureDetector(
+                  onTap: () {
+                    context.read<ProductSizeCubit>().itemSelection(index);
+                  },
+                  child: Container(
+                    width: 40,
+                    decoration: BoxDecoration(
+                      color: isSelected ? Colors.white : Colors.blue,
+                      border: Border.all(color: Colors.black),
+                    ),
+                    child: Center(
+                      child: Text(
+                        productsEntity.size[index],
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: isSelected ? Colors.black : Colors.white,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              );
+                );
+              },
+            );
             },
           ),
         ),
