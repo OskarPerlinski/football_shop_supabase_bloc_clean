@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:football_app/bloc/button/button_cubit.dart';
 import 'package:football_app/bloc/club_collections/club_collections_cubit.dart';
 import 'package:football_app/bloc/product_size/product_size.dart';
 import 'package:football_app/bloc/quantity/quantity_cubit.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ClubCollectionsCubit()..displayClubCollections()),
         BlocProvider(create: (context) => QuantityCubit()),
         BlocProvider(create: (context) => ProductSizeCubit()),
+        BlocProvider(create: (context) => ButtonCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
