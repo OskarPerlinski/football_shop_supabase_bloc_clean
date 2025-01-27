@@ -7,6 +7,7 @@ class ProductOrderedEntity {
   final String size;
   final String quantity;
   final String id;
+  final String totalPrice;
 
   ProductOrderedEntity({
     required this.createdAt,
@@ -17,5 +18,6 @@ class ProductOrderedEntity {
     required this.quantity,
     required this.size,
     required this.id,
+    required this.totalPrice,
   });
 }
