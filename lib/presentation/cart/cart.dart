@@ -17,7 +17,6 @@ class CartPage extends HookWidget {
     return Scaffold(
       appBar: const BasicAppbar(
         title: Text('CART'),
-        hideBack: true,
       ),
       body: BlocProvider(
         create: (context) => CartProductsCubit()..displayProducts(),
