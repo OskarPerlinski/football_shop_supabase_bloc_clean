@@ -6,6 +6,7 @@ class CartEntity {
   final String imgaes;
   final String quantity;
   final String size;
+  final String totalPrice;
 
   CartEntity({
     required this.createdAt,
@@ -15,5 +16,6 @@ class CartEntity {
     required this.imgaes,
     required this.quantity,
     required this.size,
+    required this.totalPrice,
   });
 }
