@@ -7,6 +7,7 @@ import 'package:football_app/bloc/product_size/product_size.dart';
 import 'package:football_app/bloc/quantity/quantity_cubit.dart';
 import 'package:football_app/common/widgets/basic_appbar/basic_appbar.dart';
 import 'package:football_app/common/widgets/basic_reactive_button/basic_reactive_button.dart';
+import 'package:football_app/common/widgets/product_card/product_price_helper.dart';
 import 'package:football_app/core/assets/app_images.dart';
 import 'package:football_app/data/cart/modelss/cart.dart';
 import 'package:football_app/domain/cart/usecases/add_to_cart.dart';
@@ -312,27 +313,29 @@ class DetailPage extends HookWidget {
   }
 
   Widget _addToCartButton(BuildContext context) {
-    return Builder(
-      builder: (context) {
-        return BasicReactiveButton(
-          onPressed: () {
-            context.read<ButtonCubit>().execute(
-                  usecase: AddToCartUseCase(),
-                  params: CartModel(
-                    createdAt: DateTime.now().toString(),
-                    productId: productsEntity.id,
-                    name: productsEntity.name,
-                    price: productsEntity.price,
-                    imgaes: productsEntity.images[0],
-                    quantity: context.read<QuantityCubit>().state.toString(),
-                    size: productsEntity
-                        .size[context.read<ProductSizeCubit>().selectedIndex],
-                  ),
-                );
-          },
-          title: 'BUY NOW',
-        );
-      }
-    );
+    return Builder(builder: (context) {
+      return BasicReactiveButton(
+        onPressed: () {
+          context.read<ButtonCubit>().execute(
+                usecase: AddToCartUseCase(),
+                params: CartModel(
+                  createdAt: DateTime.now().toString(),
+                  productId: productsEntity.id,
+                  name: productsEntity.name,
+                  price: productsEntity.price,
+                  imgaes: productsEntity.images[0],
+                  quantity: context.read<QuantityCubit>().state.toString(),
+                  size: productsEntity
+                      .size[context.read<ProductSizeCubit>().selectedIndex],
+                  totalPrice:
+                      (ProductPriceHelper.provideCurrentPrice(productsEntity) *
+                              context.read<QuantityCubit>().state)
+                          .toString(),
+                ),
+              );
+        },
+        title: 'BUY NOW',
+      );
+    });
   }
 }
