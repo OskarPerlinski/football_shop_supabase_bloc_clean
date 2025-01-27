@@ -98,7 +98,7 @@ class ProductOrderedCard extends HookWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                "${productOrderedEntity.price}\$",
+                '\$${productOrderedEntity.totalPrice}',
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 14,
