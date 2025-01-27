@@ -2,6 +2,8 @@ import 'package:football_app/data/auth/repository/auth.dart';
 import 'package:football_app/data/auth/source/auth_supabase_service.dart';
 import 'package:football_app/data/brands/repository/brands.dart';
 import 'package:football_app/data/brands/source/brands_supabase_source.dart';
+import 'package:football_app/data/cart/repository/cart.dart';
+import 'package:football_app/data/cart/source/cart_supabase_service.dart';
 import 'package:football_app/data/club_collections/repository/club_collections.dart';
 import 'package:football_app/data/club_collections/source/club_collections_supabase_source.dart';
 import 'package:football_app/data/products/repository/products.dart';
@@ -13,6 +15,8 @@ import 'package:football_app/domain/auth/usecases/sign_in.dart';
 import 'package:football_app/domain/auth/usecases/sign_up.dart';
 import 'package:football_app/domain/brands/repository/brands.dart';
 import 'package:football_app/domain/brands/usecase/brands.dart';
+import 'package:football_app/domain/cart/repository/cart.dart';
+import 'package:football_app/domain/cart/usecases/add_to_cart.dart';
 import 'package:football_app/domain/club_collections/repository/club_collections.dart';
 import 'package:football_app/domain/club_collections/usecase/club_collections.dart';
 import 'package:football_app/domain/products/repository/products.dart';
@@ -30,11 +34,13 @@ Future<void> initialzeDependencies() async {
   sl.registerSingleton<ClubCollectionsSupabaseSource>(ClubCollectionsSupabaseSourceImpl(supabaseClient: Supabase.instance.client));
   sl.registerSingleton<BrandsSupabaseSource>(BrandsSupabaseSourceImpl(supabaseClient: Supabase.instance.client));
   sl.registerSingleton<ProductsSupabaseService>(ProductsSupabaseServiceImpl(supabaseClient: Supabase.instance.client));
+  sl.registerSingleton<CartSupabaseService>(CartSupabaseServiceImpl(supabaseClient: Supabase.instance.client));
   //repository
   sl.registerSingleton<AuthRepository>(AuthRepositoryImpl());
   sl.registerSingleton<ClubCollectionsRepository>(ClubCollectionsRepositoryImpl());
   sl.registerSingleton<BrandsReposiotry>(BrandsRepositoryImpl());
   sl.registerSingleton<ProductsReposiotry>(ProductsRepositoryImpl());
+  sl.registerSingleton<CartReposiotry>(CartReposiotryImpl());
   //usecases
   sl.registerSingleton<SignUpUseCase>(SignUpUseCase());
   sl.registerSingleton<SignInUseCase>(SignInUseCase());
@@ -45,4 +51,5 @@ Future<void> initialzeDependencies() async {
   sl.registerSingleton<NewProductsUseCase>(NewProductsUseCase());
   sl.registerSingleton<GetByBrandIdUseCase>(GetByBrandIdUseCase());
   sl.registerSingleton<GetByCollectionsUseCase>(GetByCollectionsUseCase());
+  sl.registerSingleton<AddToCartUseCase>(AddToCartUseCase());
 }
