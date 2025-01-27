@@ -12,6 +12,7 @@ class ProductOrderedModel {
   final String size;
   final String quantity;
   final String id;
+  final String totalPrice;
 
   ProductOrderedModel({
     required this.createdAt,
@@ -22,6 +23,7 @@ class ProductOrderedModel {
     required this.quantity,
     required this.size,
     required this.id,
+    required this.totalPrice,
   });
 
   Map<String, dynamic> toMap() {
@@ -34,6 +36,7 @@ class ProductOrderedModel {
       'size': size,
       'quantity': quantity,
       'id': id,
+      'totalPrice': totalPrice,
     };
   }
 
@@ -47,6 +50,7 @@ class ProductOrderedModel {
       size: map['size'] as String,
       quantity: map['quantity'] as String,
       id: map['id'] as String,
+      totalPrice: map['totalPrice'] as String,
     );
   }
 
@@ -67,6 +71,7 @@ extension ProductOrderedXModel on ProductOrderedModel {
       quantity: quantity,
       size: size,
       id: id,
+      totalPrice: totalPrice,
     );
   }
 }
