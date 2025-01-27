@@ -17,23 +17,26 @@ class CheckOut extends HookWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            const Text(
-              'Subtotal',
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 16,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Subtotal',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16,
+                ),
               ),
-            ),
-            Text(
-              '\$${CartHelper.calculateCartTotalSubtotal(products)}',
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: Colors.black,
-              ),
-            )
-          ]),
+              Text(
+                '\$${CartHelper.calculateCartTotalSubtotal(products).toString()}',
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
+              )
+            ],
+          ),
           const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -53,7 +56,7 @@ class CheckOut extends HookWidget {
                   ),
                 )
               ]),
-           Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
@@ -64,7 +67,7 @@ class CheckOut extends HookWidget {
                 ),
               ),
               Text(
-                '\$${CartHelper.calculateCartTotalSubtotal(products) +8}',
+                '\$${CartHelper.calculateCartTotalSubtotal(products) + 8}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
