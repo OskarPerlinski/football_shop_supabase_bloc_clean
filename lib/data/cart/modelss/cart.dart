@@ -11,6 +11,7 @@ class CartModel {
   final String imgaes;
   final String size;
   final String quantity;
+  final String totalPrice;
 
   CartModel({
     required this.createdAt,
@@ -20,6 +21,7 @@ class CartModel {
     required this.imgaes,
     required this.quantity,
     required this.size,
+    required this.totalPrice,
   });
 
   Map<String, dynamic> toMap() {
@@ -31,6 +33,7 @@ class CartModel {
       'imgaes': imgaes,
       'quantity': quantity,
       'size': size,
+      'totalPrice': totalPrice,
     };
   }
 
@@ -43,6 +46,7 @@ class CartModel {
       imgaes: map['imgaes'] as String,
       quantity: map['quantity'] as String,
       size: map['size'] as String,
+      totalPrice: map['totalPrice'] as String,
     );
   }
 
@@ -62,6 +66,7 @@ extension CartXModel on CartModel {
       imgaes: imgaes,
       quantity: quantity,
       size: size,
+      totalPrice: totalPrice,
     );
   }
 }
