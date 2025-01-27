@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:football_app/bloc/button/button_cubit.dart';
+import 'package:football_app/bloc/button/button_state.dart';
 import 'package:football_app/bloc/product_size/product_size.dart';
 import 'package:football_app/bloc/quantity/quantity_cubit.dart';
 import 'package:football_app/common/widgets/basic_appbar/basic_appbar.dart';
-import 'package:football_app/common/widgets/basic_button/basic_button.dart';
+import 'package:football_app/common/widgets/basic_reactive_button/basic_reactive_button.dart';
 import 'package:football_app/core/assets/app_images.dart';
+import 'package:football_app/data/cart/modelss/cart.dart';
+import 'package:football_app/domain/cart/usecases/add_to_cart.dart';
 import 'package:football_app/domain/products/entity/products.dart';
+import 'package:football_app/presentation/cart/cart.dart';
 
 class DetailPage extends HookWidget {
   final ProductsEntity productsEntity;
@@ -26,24 +31,49 @@ class DetailPage extends HookWidget {
       body: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _imagesProduct(),
-              const SizedBox(height: 20),
-              _nameProduct(),
-              const SizedBox(height: 20),
-              _priceAndRaiting(),
-              const SizedBox(height: 20),
-              _sizes(),
-              const SizedBox(height: 20),
-              _quantity(context),
-              const SizedBox(height: 20),
-              _productDescription(),
-              const SizedBox(height: 30),
-              _addToCartButton(),
-              const SizedBox(height: 30),
-            ],
+          child: BlocProvider(
+            create: (context) => ButtonCubit(),
+            child: BlocListener<ButtonCubit, ButtonState>(
+              listener: (context, state) {
+                if (state is ButtonLoadedState) {
+                  {
+                    var snackbar = const SnackBar(
+                      content: Text('Product added to cart'),
+                      behavior: SnackBarBehavior.floating,
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CartPage(),
+                      ),
+                    );
+                  }
+                }
+                if (state is ButtonFailureState) {
+                  const Text('Please try again...');
+                }
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _imagesProduct(),
+                  const SizedBox(height: 20),
+                  _nameProduct(),
+                  const SizedBox(height: 20),
+                  _priceAndRaiting(),
+                  const SizedBox(height: 20),
+                  _sizes(),
+                  const SizedBox(height: 20),
+                  _quantity(context),
+                  const SizedBox(height: 20),
+                  _productDescription(),
+                  const SizedBox(height: 30),
+                  _addToCartButton(context),
+                  const SizedBox(height: 30),
+                ],
+              ),
+            ),
           ),
         ),
       ),
@@ -142,35 +172,35 @@ class DetailPage extends HookWidget {
           child: BlocBuilder<ProductSizeCubit, int>(
             builder: (context, selectedIndex) {
               return ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: productsEntity.size.length,
-              separatorBuilder: (context, index) => const SizedBox(width: 10),
-              itemBuilder: (context, index) {
-                final isSelected = selectedIndex == index;
-                return GestureDetector(
-                  onTap: () {
-                    context.read<ProductSizeCubit>().itemSelection(index);
-                  },
-                  child: Container(
-                    width: 40,
-                    decoration: BoxDecoration(
-                      color: isSelected ? Colors.white : Colors.blue,
-                      border: Border.all(color: Colors.black),
-                    ),
-                    child: Center(
-                      child: Text(
-                        productsEntity.size[index],
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: isSelected ? Colors.black : Colors.white,
+                scrollDirection: Axis.horizontal,
+                itemCount: productsEntity.size.length,
+                separatorBuilder: (context, index) => const SizedBox(width: 10),
+                itemBuilder: (context, index) {
+                  final isSelected = selectedIndex == index;
+                  return GestureDetector(
+                    onTap: () {
+                      context.read<ProductSizeCubit>().itemSelection(index);
+                    },
+                    child: Container(
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: isSelected ? Colors.white : Colors.blue,
+                        border: Border.all(color: Colors.black),
+                      ),
+                      child: Center(
+                        child: Text(
+                          productsEntity.size[index],
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: isSelected ? Colors.black : Colors.white,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                );
-              },
-            );
+                  );
+                },
+              );
             },
           ),
         ),
@@ -224,7 +254,8 @@ class DetailPage extends HookWidget {
             BlocBuilder<QuantityCubit, int>(
               builder: (context, state) => Text(
                 state.toString(),
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
             ),
             const SizedBox(width: 20),
@@ -280,10 +311,28 @@ class DetailPage extends HookWidget {
     );
   }
 
-  Widget _addToCartButton() {
-    return BasicAppButton(
-      onPressed: () {},
-      title: 'BUY NOW',
+  Widget _addToCartButton(BuildContext context) {
+    return Builder(
+      builder: (context) {
+        return BasicReactiveButton(
+          onPressed: () {
+            context.read<ButtonCubit>().execute(
+                  usecase: AddToCartUseCase(),
+                  params: CartModel(
+                    createdAt: DateTime.now().toString(),
+                    productId: productsEntity.id,
+                    name: productsEntity.name,
+                    price: productsEntity.price,
+                    imgaes: productsEntity.images[0],
+                    quantity: context.read<QuantityCubit>().state.toString(),
+                    size: productsEntity
+                        .size[context.read<ProductSizeCubit>().selectedIndex],
+                  ),
+                );
+          },
+          title: 'BUY NOW',
+        );
+      }
     );
   }
 }
