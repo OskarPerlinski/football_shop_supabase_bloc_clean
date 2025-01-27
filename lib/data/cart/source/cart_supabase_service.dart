@@ -29,6 +29,7 @@ class CartSupabaseServiceImpl extends CartSupabaseService {
         'images': cartModel.imgaes,
         'size': cartModel.size,
         'quantity': cartModel.quantity,
+        'totalPrice': cartModel.totalPrice,
       });
       return const Right('Add to cart was successfully');
     } catch (e) {
