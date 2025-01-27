@@ -18,6 +18,7 @@ import 'package:football_app/domain/brands/usecase/brands.dart';
 import 'package:football_app/domain/cart/repository/cart.dart';
 import 'package:football_app/domain/cart/usecases/add_to_cart.dart';
 import 'package:football_app/domain/cart/usecases/get_cart_products.dart';
+import 'package:football_app/domain/cart/usecases/get_remove_products.dart';
 import 'package:football_app/domain/club_collections/repository/club_collections.dart';
 import 'package:football_app/domain/club_collections/usecase/club_collections.dart';
 import 'package:football_app/domain/products/repository/products.dart';
@@ -54,4 +55,5 @@ Future<void> initialzeDependencies() async {
   sl.registerSingleton<GetByCollectionsUseCase>(GetByCollectionsUseCase());
   sl.registerSingleton<AddToCartUseCase>(AddToCartUseCase());
   sl.registerSingleton<GetCartProductsUseCase>(GetCartProductsUseCase());
+  sl.registerSingleton<GetRemoveProductsUseCase>(GetRemoveProductsUseCase());
 }
