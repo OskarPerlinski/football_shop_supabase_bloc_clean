@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class CartSupabaseService {
   Future<Either> addToCart(CartModel cartModel);
+  Future<Either> getCartProducts();
 }
 
 class CartSupabaseServiceImpl extends CartSupabaseService {
@@ -30,6 +31,29 @@ class CartSupabaseServiceImpl extends CartSupabaseService {
       });
       return const Right('Add to cart was successfully');
     } catch (e) {
+      return const Left('Please try again');
+    }
+  }
+  
+  @override
+  Future<Either> getCartProducts() async {
+    try{
+      var user = supabaseClient.auth.currentUser;
+      if (user == null) {
+        return const Left('User is not logged in');
+      }
+      var returnedData = await Supabase.instance.client
+          .from('cart')
+          .select('*')
+          .eq('userId', user.id);
+
+      List<Map> products = [];
+      for (var item in returnedData) {
+        item['id'] = item['id'];
+        products.add(item);
+      }
+      return Right(products);
+    } catch(e) {
       return const Left('Please try again');
     }
   }
