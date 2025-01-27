@@ -27,4 +27,17 @@ class CartReposiotryImpl extends CartReposiotry {
       },
     );
   }
+  
+  @override
+  Future<Either> getRemoveProducts(String id) async {
+    var returnedData = await sl<CartSupabaseService>().getRemoveProducts(id);
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (message) {
+        return Right(message);
+      },
+    );
+  }
 }
