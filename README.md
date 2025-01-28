@@ -1,16 +1,10 @@
-# football_app
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Screenshot_1738079157](https://github.com/user-attachments/assets/c968b01c-f2b3-4235-973f-cf39b6d23ba3)
+![Screenshot_1738079167](https://github.com/user-attachments/assets/9ac358dc-bdb6-46c9-a891-0c9d9c3c5550)
+![Screenshot_1738079176](https://github.com/user-attachments/assets/5d605c62-f0ec-4978-aba7-72890607101d)
+![Screenshot_1738079183](https://github.com/user-attachments/assets/19f6d542-e2bc-4ea2-a3ed-9e9a449e933a)
+![Screenshot_1738079212](https://github.com/user-attachments/assets/a8fa5002-85ce-4b53-adfb-aa44b6940aa3)
+![Screenshot_1738079218](https://github.com/user-attachments/assets/8d9481be-5b42-4123-86b2-81d2c3fc58c7)
+![Screenshot_1738079226](https://github.com/user-attachments/assets/97ba60ca-e735-4316-a65e-8b636ccbbcf6)
+![Screenshot_1738079228](https://github.com/user-attachments/assets/ac45942a-5ece-4aaa-9070-dab06762d3bf)
+![Screenshot_1738079296](https://github.com/user-attachments/assets/8b18d2e4-815c-4548-978c-eb89649cea76)
+![Screenshot_1738079304](https://github.com/user-attachments/assets/bb9cca74-444f-4ea7-96ca-6ecf975da016)
