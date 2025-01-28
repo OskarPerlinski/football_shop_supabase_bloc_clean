@@ -45,7 +45,7 @@ class ProductCard extends HookWidget {
                     Text(
                       productsEntity.name,
                       style: const TextStyle(
-                        fontSize: 14,
+                        fontSize: 12,
                         overflow: TextOverflow.ellipsis,
                         fontWeight: FontWeight.bold,
                       ),
