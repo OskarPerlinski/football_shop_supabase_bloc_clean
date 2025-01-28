@@ -88,7 +88,7 @@ class DetailPage extends HookWidget {
       children: [
         Container(
           height: 300,
-          width: 180,
+          width: 160,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: NetworkImage(
